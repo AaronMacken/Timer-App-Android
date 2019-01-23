@@ -10,6 +10,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    // Instance variables
     int timeRemaining;
     TextView textView;
     SeekBar timeSeekBar;
@@ -22,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mediaPlayer = MediaPlayer.create(this, R.raw.airhorn);
 
         // Create Seek Bar, set max, call display time method on seek bar change
         timeSeekBar = findViewById(R.id.seekBar);
@@ -35,14 +35,12 @@ public class MainActivity extends AppCompatActivity {
                 timeRemaining = progress;
             }
 
+            // No code used for these methods
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
-
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
 
@@ -51,16 +49,18 @@ public class MainActivity extends AppCompatActivity {
     // Go & cancel button onClick method to begin count down & modify UI
     public void beginCountDown(View v) {
         goButton = findViewById(R.id.goButton);
+        mediaPlayer = MediaPlayer.create(this, R.raw.airhorn);
+        // Code executed if the timer is not running
         if (isPlaying == false) {
             isPlaying = true;
             goButton.setText("Stop");
             timeSeekBar.setVisibility(View.INVISIBLE);
-            timer = new CountDownTimer(timeRemaining * 1000 + 100, 1000) {
+            // timeRemaining variable gets the progress from timerSeekBar & uses it as the countdown time
+            timer = new CountDownTimer(timeRemaining * 1000, 1000) {
 
                 @Override
                 public void onTick(long millisUntilFinished) {
-                    String displayTime = convertTime((int)(millisUntilFinished / 1000));
-                    textView.setText(displayTime);
+                    textView.setText(convertTime((int)(millisUntilFinished / 1000)));
                 }
                 @Override
                 public void onFinish() {
