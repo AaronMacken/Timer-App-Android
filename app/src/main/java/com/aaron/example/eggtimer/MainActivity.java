@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
                 timeRemaining = progress;
             }
 
-            // No code used for these methods
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
@@ -43,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
-
 
     }
     // Go & cancel button onClick method to begin count down & modify UI
